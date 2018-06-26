@@ -2,7 +2,7 @@ FROM alpine/git as clone
 WORKDIR /app
 RUN git clone https://github.com/delimeat/delimeat.git
 
-FROM maven:3.5.3-jdk-8 as build
+FROM maven:3-jdk-8-alpine as build
 WORKDIR /app
 COPY --from=clone /app/delimeat /app
 RUN mvn install
@@ -11,8 +11,7 @@ FROM openjdk:8-jre-alpine
 VOLUME /data /output
 WORKDIR /data
 
-COPY --from=build /app/target/delimeat.jar . 
-#ADD delimeat.jar /delimeat.jar
+COPY --from=build /app/target/delimeat.jar /delimeat.jar 
 
 EXPOSE 8080/tcp
 
