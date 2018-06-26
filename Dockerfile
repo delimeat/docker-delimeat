@@ -11,8 +11,7 @@ FROM openjdk:8-jre-alpine
 VOLUME /data /output
 WORKDIR /data
 
-COPY --from=build /app/target/delimeat.jar . 
-#ADD delimeat.jar /delimeat.jar
+COPY --from=build /app/target/delimeat.jar /delimeat.jar 
 
 EXPOSE 8080/tcp
 
