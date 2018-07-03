@@ -2,7 +2,7 @@ FROM alpine/git as clone
 WORKDIR /app
 RUN git clone https://github.com/delimeat/delimeat.git
 
-FROM maven:3-jdk-8-alpine as build
+FROM maven:3-jdk-8 as build
 WORKDIR /app
 COPY --from=clone /app/delimeat /app
 RUN mvn install
